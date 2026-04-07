@@ -1,0 +1,36 @@
+services:
+  db:
+    image: postgres:15
+    container_name: postgres_social
+    restart: always
+    environment:
+      POSTGRES_DB: social_db
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password_segreta
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  n8n:
+    image: n8nio/n8n:latest
+    container_name: n8n_automation
+    restart: always
+    ports:
+      - "5678:5678"
+    environment:
+      - DB_TYPE=postgresdb
+      - DB_POSTGRESDB_DATABASE=social_db
+      - DB_POSTGRESDB_HOST=db
+      - DB_POSTGRESDB_PORT=5432
+      - DB_POSTGRESDB_USER=admin
+      - DB_POSTGRESDB_PASSWORD=password_segreta
+      - N8N_BLOCK_ENV_ACCESS_IN_NODE=false
+    depends_on:
+      - db
+    volumes:
+      - n8n_data:/home/node/.n8n
+
+volumes:
+  postgres_data:
+  n8n_data:
