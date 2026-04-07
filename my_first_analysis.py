@@ -3,9 +3,6 @@ import pandas as pd
 storie = pd.read_csv('Storie.csv')
 post = pd.read_csv('Post.csv')
 
-storie["Orario di pubblicazione"] = pd.to_datetime(storie["Orario di pubblicazione"])
-post["Orario di pubblicazione"] = pd.to_datetime(post["Orario di pubblicazione"])
-
 # Ci serviranno i seguenti campi per il dataset dei post:
 # Descrizione 
 # Durata (s)
@@ -37,4 +34,31 @@ post["Orario di pubblicazione"] = pd.to_datetime(post["Orario di pubblicazione"]
 # Esiste un campo Follower
 # Navigazione
 
+
+
+split = post['Orario di pubblicazione'].str.split(' ', expand=True)
+post['Data'] = split[0]
+post['Ora'] = split[1]
+
+post = post.rename(columns={'Tipo di post': 'Formato'})
+
+cols = [
+    'Descrizione', 'Durata (s)', 'Data', 'Ora', 'Permalink',
+    'Formato', 'Visualizzazioni', 'Mi piace', 'Condivisioni',
+    'Commenti', 'Salvataggi', 'Copertura', 'Follower'
+]
+df_post = post[cols]
+
+split = storie['Orario di pubblicazione'].str.split(' ', expand=True)
+storie['Data'] = split[0]
+storie['Ora'] = split[1]
+
+
+cols = [
+    'Descrizione', 'Durata (s)', 'Data', 'Ora', 'Permalink',
+    'Tipo di post', 'Visualizzazioni', 'Copertura', 'Mi piace', 'Condivisioni',
+    'Visite al profilo', 'Risposte', 'Clic sul link', 'Tocchi sugli adesivi',
+    'Follower', 'Navigazione'
+]
+df_storie = storie[cols]
 
