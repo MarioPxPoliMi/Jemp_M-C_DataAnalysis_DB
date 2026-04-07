@@ -61,3 +61,5 @@ cols = [
 ]
 df_storie = storie[cols]
 
+df_post.to_csv('post_filtrato.csv', index=False)
+df_storie.to_csv('storie_filtrato.csv', index=False)
