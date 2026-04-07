@@ -57,8 +57,7 @@ storie['Ora'] = split[1]
 cols = [
     'Descrizione', 'Durata (s)', 'Data', 'Ora', 'Permalink',
     'Tipo di post', 'Visualizzazioni', 'Copertura', 'Mi piace', 'Condivisioni',
-    'Visite al profilo', 'Risposte', 'Clic sul link', 'Tocchi sugli adesivi',
-    'Follower', 'Navigazione'
+    'Visite al profilo', 'Risposte', 'Clic sul link', 'Tocchi sugli adesivi', 'Navigazione'
 ]
 df_storie = storie[cols]
 
