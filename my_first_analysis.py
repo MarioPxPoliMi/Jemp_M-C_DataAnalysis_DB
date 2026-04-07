@@ -1,7 +1,8 @@
 import pandas as pd
 
-storie = pd.read_csv('Storie.csv')
-post = pd.read_csv('Post.csv')
+storie = pd.read_csv('Data/Storie.csv')
+post = pd.read_csv('Data/Post.csv')
+
 
 # Ci serviranno i seguenti campi per il dataset dei post:
 # Descrizione 
